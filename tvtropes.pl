@@ -10,7 +10,7 @@ use utf8;
  
 use JSON;
 
-my $DEBUG = 0;
+my $DEBUG = 1;
 my $max_tropes = 10;
 
 my $json;
@@ -33,7 +33,7 @@ foreach $key (keys %{$data}) {
   $film_data = $data->{$key};
   my $num_tropes = scalar @{$film_data};
   if ($DEBUG) { print "film: $key num_tropes: $num_tropes\n"; }
-  if ($num_tropes > $max_tropes) {
+  if ($num_tropes > $max_tropes || $num_tropes == 0) {
      delete $data->{$key};
   }
   
@@ -44,18 +44,10 @@ foreach $key (keys %{$data}) {
 
 foreach $key (keys %tropes)
 {
-   print "$key\n";
+   if (!$DEBUG) { print "$key\n"; }
 }
 
 
 open my $fh, ">", "$file_name" . "_less_than_10.json";
 print $fh encode_json($data);
 close $fh;
-# # Output to screen one of the values read
-# print "Boss' hobbies: " .
-#      $data->{'boss'}->{'Hobbies'}->[0] . "n";
-# Modify the value, and write the output file as json
-# $data->{'boss'}->{'Hobbies'}->[0] = "Swimming";
-# open my $fh, ">", "data_out.json";
-# print $fh encode_json($data);
-# close $fh;
