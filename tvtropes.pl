@@ -20,10 +20,10 @@ my $ngram_size = 7;
 
 my $json;
 
-my $file_name = $ARGV[0];
+my $file_name = $ARGV[0] // "tvtropes.json_less_than_10.json";
 {
   local $/; #Enable 'slurp' mode
-  open my $fh,'<',$ARGV[0] or die "can't open file: $!";
+  open my $fh,'<',$file_name or die "can't open file: $!";
   # open my $fh, "<", "tvtropes.json";
   $json = <$fh>;
   close $fh;
