@@ -1,13 +1,14 @@
-#!/usr/bin/env perl 
+#!/usr/bin/perl
 #
 # https://blog-en.openalfa.com/how-to-read-and-write-json-files-in-perl 
 
 use strict;
 # use warnings;
+use lib '/usr/lib/x86_64-linux-gnu/perl5/5.26';
 
 use Algorithm::Combinatorics qw(combinations);
 
-
+ 
 binmode STDOUT, ":utf8";
 use utf8;
  
@@ -20,10 +21,10 @@ my $ngram_size = 7;
 
 my $json;
 
-my $file_name = $ARGV[0] // "tvtropes.json_less_than_10.json";
+my $file_name = $ARGV[0];
 {
   local $/; #Enable 'slurp' mode
-  open my $fh,'<',$file_name or die "can't open file: $!";
+  open my $fh,'<',$ARGV[0] or die "can't open file: $!";
   # open my $fh, "<", "tvtropes.json";
   $json = <$fh>;
   close $fh;
