@@ -18,10 +18,11 @@ my $max_tropes = 15;
 my $min_tropes = 9;
 my $ngram_size = 9;
 my $output_dir = "output";
+my $shuffle = 1;
 
 my $json;
 
-my $file_name = $ARGV[0] // "tvtropes.json_less_than_10.json";
+my $file_name = $ARGV[0] // "tvtropes.json";
 {
   local $/; #Enable 'slurp' mode
   open my $fh,'<', "$file_name" or die "can't open file: $!";
@@ -35,10 +36,11 @@ my $data = decode_json($json);
 my %tropes;
 my $film_data;
 
+open my $fh, ">", "$output_dir/films_$max_tropes" . "_taken_$ngram_size.json";
 foreach $key (keys %{$data}) { # foreach film name
   $film_data = $data->{$key};
   my $num_tropes = scalar @{$film_data};
-  if ($DEBUG) { print "film: $key num_tropes: $num_tropes\n"; }
+  print $fh "$key num_tropes: $num_tropes\n";
   if ($num_tropes > $max_tropes || $num_tropes == $min_tropes) {
      delete $data->{$key}; # remove film
   }
@@ -47,8 +49,9 @@ foreach $key (keys %{$data}) { # foreach film name
      $tropes{$value}= "";
   }
 }
+close $fh;
 
-open my $fh, ">", "$output_dir/tropes_set_$max_tropes.txt";
+open my $fh, ">", "$output_dir/tropes_set_$max_tropes". "_taken_$ngram_size.txt";
 foreach $key (keys %tropes)
 {
    # if (!$DEBUG) { print "$key\n"; }ç
@@ -56,11 +59,11 @@ foreach $key (keys %tropes)
 }
 close $fh;
 
-open my $fh, ">", "$output_dir/less_than_$max_tropes.json";
+open my $fh, ">", "$output_dir/less_than_$max_tropes" . "_taken_$ngram_size.json";
 print $fh encode_json($data);
 close $fh;
 
-open my $fh, ">", "$output_dir/ngrams_$max_tropes.txt";
+open my $fh, ">", "$output_dir/ngrams_$max_tropes" . "_taken_$ngram_size.txt";
 # creating combinations n-grams of n_grams_size
 foreach $key (keys %{$data}) { # foreach film name remove tropes
                                # not included in selected tropes set
@@ -72,9 +75,15 @@ foreach $key (keys %{$data}) { # foreach film name remove tropes
          print "combinations of $ngram_size from: ".join(" ",@{$film_data})."\n";
          print "-" .("--" x scalar(@{$film_data}))."\n";
       }
+
       while(my $combo = $combinat->next) {
          my @new_array = shuffle(@{$combo});
-         print $fh "@new_array. ";
+         if ($shuffle) {
+            print $fh "@new_array. ";
+         } else {
+            @new_array = @{$combo};
+            print $fh "@new_array. ";
+         } 
       }
       print $fh "\n";
    }
