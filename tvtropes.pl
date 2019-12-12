@@ -4,7 +4,7 @@
 
 use strict;
 # use warnings;
-
+use List::Util qw/shuffle/;
 use Algorithm::Combinatorics qw(combinations);
 
 
@@ -73,7 +73,8 @@ foreach $key (keys %{$data}) { # foreach film name remove tropes
          print "-" .("--" x scalar(@{$film_data}))."\n";
       }
       while(my $combo = $combinat->next) {
-         print $fh "@{$combo}. ";
+         my @new_array = shuffle(@{$combo});
+         print $fh "@new_array. ";
       }
       print $fh "\n";
    }
