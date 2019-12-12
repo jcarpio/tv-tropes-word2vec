@@ -1,9 +1,13 @@
-#!/usr/bin/perl
+#!/usr/bin/perl -d
 #
 # https://blog-en.openalfa.com/how-to-read-and-write-json-files-in-perl 
 
 use strict;
 # use warnings;
+use lib '/usr/lib/x86_64-linux-gnu/perl5/5.26/Algorithm/';
+
+use Combinatorics;
+
  
 binmode STDOUT, ":utf8";
 use utf8;
@@ -12,6 +16,8 @@ use JSON;
 
 my $DEBUG = 1;
 my $max_tropes = 10;
+my $min_tropes = 0;
+my $ngram_size = 7;
 
 my $json;
 
@@ -29,25 +35,45 @@ my $data = decode_json($json);
 my %tropes;
 my $film_data;
 
-foreach $key (keys %{$data}) {
+foreach $key (keys %{$data}) { # foreach film name
   $film_data = $data->{$key};
   my $num_tropes = scalar @{$film_data};
   if ($DEBUG) { print "film: $key num_tropes: $num_tropes\n"; }
-  if ($num_tropes > $max_tropes || $num_tropes == 0) {
-     delete $data->{$key};
+  if ($num_tropes > $max_tropes || $num_tropes == $min_tropes) {
+     delete $data->{$key}; # remove film
   }
   
-  foreach my $value (@{$film_data}) {
+  foreach my $value (@{$film_data}) { # creating tropes set
      $tropes{$value}= "";
   }
 }
 
+open my $fh, ">", "tropes_set.txt";
 foreach $key (keys %tropes)
 {
-   if (!$DEBUG) { print "$key\n"; }
+   # if (!$DEBUG) { print "$key\n"; }ç
+   print $fh "$key\n";
 }
-
+close $fh;
 
 open my $fh, ">", "$file_name" . "_less_than_10.json";
 print $fh encode_json($data);
 close $fh;
+
+
+# creating combinations n-grams of n_grams_size
+foreach $key (keys %{$data}) { # foreach film name remove tropes
+                               # not included in selected tropes set
+   $film_data = $data->{$key};
+   my $combinat = Combinatorics->new(count => $ngram_size,
+                                        data => [@{$film_data}],
+                                       );
+
+   print "combinations of $ngram_size from: ".join(" ",@{$film_data})."\n";
+   print "-" .("--" x scalar(@{$film_data}))."\n";
+   while(my @combo = $combinat->next_combination){
+      print join(' ', @combo)."\n";
+   }
+ 
+   print "\n";
+}
