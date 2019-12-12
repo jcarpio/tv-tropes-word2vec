@@ -14,16 +14,17 @@ use utf8;
 use JSON;
 
 my $DEBUG = 0;
-my $max_tropes = 10;
-my $min_tropes = 7;
-my $ngram_size = 7;
+my $max_tropes = 15;
+my $min_tropes = 9;
+my $ngram_size = 9;
+my $output_dir = "output";
 
 my $json;
 
 my $file_name = $ARGV[0] // "tvtropes.json_less_than_10.json";
 {
   local $/; #Enable 'slurp' mode
-  open my $fh,'<',$file_name or die "can't open file: $!";
+  open my $fh,'<', "$file_name" or die "can't open file: $!";
   # open my $fh, "<", "tvtropes.json";
   $json = <$fh>;
   close $fh;
@@ -47,7 +48,7 @@ foreach $key (keys %{$data}) { # foreach film name
   }
 }
 
-open my $fh, ">", "tropes_set.txt";
+open my $fh, ">", "$output_dir/tropes_set_$max_tropes.txt";
 foreach $key (keys %tropes)
 {
    # if (!$DEBUG) { print "$key\n"; }ç
@@ -55,11 +56,11 @@ foreach $key (keys %tropes)
 }
 close $fh;
 
-open my $fh, ">", "$file_name" . "_less_than_10.json";
+open my $fh, ">", "$output_dir/less_than_$max_tropes.json";
 print $fh encode_json($data);
 close $fh;
 
-
+open my $fh, ">", "$output_dir/ngrams_$max_tropes.txt";
 # creating combinations n-grams of n_grams_size
 foreach $key (keys %{$data}) { # foreach film name remove tropes
                                # not included in selected tropes set
@@ -72,8 +73,11 @@ foreach $key (keys %{$data}) { # foreach film name remove tropes
          print "-" .("--" x scalar(@{$film_data}))."\n";
       }
       while(my $combo = $combinat->next) {
-         print "@{$combo}\n";
+         print $fh "@{$combo}. ";
       }
+      print $fh "\n";
    }
-   print "\n";
+   print $fh "\n";
 }
+
+close $fh;
