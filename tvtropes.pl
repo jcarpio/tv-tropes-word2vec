@@ -14,7 +14,7 @@ use utf8;
  
 use JSON;
 
-my $DEBUG = 1;
+my $DEBUG = 0;
 my $max_tropes = 10;
 my $min_tropes = 7;
 my $ngram_size = 7;
@@ -68,8 +68,10 @@ foreach $key (keys %{$data}) { # foreach film name remove tropes
    my $num_tropes = scalar @{$film_data};
    if ($num_tropes >= $ngram_size) {
       my $combinat = combinations(\@{$film_data}, $ngram_size);
-      print "combinations of $ngram_size from: ".join(" ",@{$film_data})."\n";
-      print "-" .("--" x scalar(@{$film_data}))."\n";
+      if ($DEBUG) { 
+         print "combinations of $ngram_size from: ".join(" ",@{$film_data})."\n";
+         print "-" .("--" x scalar(@{$film_data}))."\n";
+      }
       while(my $combo = $combinat->next) {
          print "@{$combo}\n";
       }
