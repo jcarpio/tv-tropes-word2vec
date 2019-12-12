@@ -3,7 +3,8 @@
 # https://blog-en.openalfa.com/how-to-read-and-write-json-files-in-perl 
 
 use strict;
-# use warnings;
+use warnings;
+
 use List::Util qw/shuffle/;
 use Algorithm::Combinatorics qw(combinations);
 
@@ -32,7 +33,6 @@ my $file_name = $ARGV[0] // "tvtropes.json";
 {
   local $/; #Enable 'slurp' mode
   open my $fh,'<', "$file_name" or die "can't open file: $!";
-  # open my $fh, "<", "tvtropes.json";
   $json = <$fh>;
   close $fh;
 }
@@ -43,33 +43,36 @@ my %tropes;
 my $film_data;
 
 open my $fh, ">", "$output_dir/films_$max_tropes" . "_taken_$ngram_size.txt";
+
 foreach $key (keys %{$data}) { # foreach film name
   $film_data = $data->{$key};
   my $num_tropes = scalar @{$film_data};
-  if ($DEBUG) { print "$key num_tropes: $num_tropes\n"; }
+
+  if ($DEBUG) { print "$key num_tropes: $num_tropes\n"; } # if DEBUG print all films
+
   if ($num_tropes <= $max_tropes && $num_tropes >= $min_tropes) {
      print $fh "$key num_tropes: $num_tropes\n";
+     foreach my $value (@{$film_data}) { # creating tropes set
+        $tropes{$value}= "";
+     }
+  } else {
      delete $data->{$key}; # remove film
-  }
-  
-  foreach my $value (@{$film_data}) { # creating tropes set
-     $tropes{$value}= "";
   }
 }
 close $fh;
 
-open my $fh, ">", "$output_dir/tropes_set_$max_tropes". "_taken_$ngram_size.txt";
+open $fh, ">", "$output_dir/tropes_set_$max_tropes". "_taken_$ngram_size.txt";
 foreach $key (keys %tropes)
 {
    print $fh "$key\n";
 }
 close $fh;
 
-open my $fh, ">", "$output_dir/less_than_$max_tropes" . "_taken_$ngram_size.json";
+open $fh, ">", "$output_dir/less_than_$max_tropes" . "_taken_$ngram_size.json";
 print $fh encode_json($data);
 close $fh;
 
-open my $fh, ">", "$output_dir/ngrams_$max_tropes" . "_taken_$ngram_size.txt";
+open $fh, ">", "$output_dir/ngrams_$max_tropes" . "_taken_$ngram_size.txt";
 # creating combinations n-grams of n_grams_size
 foreach $key (keys %{$data}) { # foreach film name remove tropes
                                # not included in selected tropes set
