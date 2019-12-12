@@ -1,21 +1,16 @@
 # tv-tropes-word2vec
 TV Tropes and Word2vec paper
 
-To obtain file tvtropes_less_than_10.json
+Usage: tvtropes.pl <json_file> <max_tropes> <ngram_size> 
 
-./tvtropes.pl tvtropes.json
+./tvtropes.pl tvtropes.json 15 9
 
-(with DEBUG = 0) To obtain set of tropes in films with less than 10 tropes
+You will get following files:
 
-./tvtropes.pl tvtropes_less_than_10.json > tropes_set.txt
-
-To obtain number of films with less than 10 tropes
-
-wc -l tvtropes_less_than_10.txt
-
-To obtain number of tropes in set of tropes from films with less than 10 tropes
-
-wc -l tropes_set.txt
+ngrams_15_taken_9.txt  -- combinations of 15 tropes taken from 9 to 9 for each film
+films_15_taken_9.txt   -- films with tropes size between 9 and 15 both inclusive
+less_than_16_taken_9.json  -- json file created from original deleting films out of range [9-15]
+tropes_set_15_taken_9.txt  -- tropes set of films in range [9-15]
 
 tvtropes.json example:
 
