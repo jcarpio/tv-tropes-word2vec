@@ -13,10 +13,16 @@ use utf8;
  
 use JSON;
 
+my $num_args = $#ARGV + 1;
+if ($num_args != 3) {
+    print "Usage: tvtropes.pl <json_file> <max_tropes> <ngram_size>\n";
+    exit;
+}
+
 my $DEBUG = 0;
-my $max_tropes = 15;
-my $min_tropes = 9;
-my $ngram_size = 9;
+my $max_tropes = $ARGV[1];
+my $min_tropes = $ARGV[2];
+my $ngram_size = $ARGV[2];
 my $output_dir = "output";
 my $shuffle = 1;
 
@@ -36,12 +42,13 @@ my $data = decode_json($json);
 my %tropes;
 my $film_data;
 
-open my $fh, ">", "$output_dir/films_$max_tropes" . "_taken_$ngram_size.json";
+open my $fh, ">", "$output_dir/films_$max_tropes" . "_taken_$ngram_size.txt";
 foreach $key (keys %{$data}) { # foreach film name
   $film_data = $data->{$key};
   my $num_tropes = scalar @{$film_data};
-  print $fh "$key num_tropes: $num_tropes\n";
-  if ($num_tropes > $max_tropes || $num_tropes == $min_tropes) {
+  if ($DEBUG) { print "$key num_tropes: $num_tropes\n"; }
+  if ($num_tropes <= $max_tropes && $num_tropes >= $min_tropes) {
+     print $fh "$key num_tropes: $num_tropes\n";
      delete $data->{$key}; # remove film
   }
   
@@ -54,7 +61,6 @@ close $fh;
 open my $fh, ">", "$output_dir/tropes_set_$max_tropes". "_taken_$ngram_size.txt";
 foreach $key (keys %tropes)
 {
-   # if (!$DEBUG) { print "$key\n"; }ç
    print $fh "$key\n";
 }
 close $fh;
