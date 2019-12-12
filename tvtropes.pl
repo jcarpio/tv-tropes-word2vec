@@ -1,12 +1,11 @@
-#!/usr/bin/perl -d
+#!/usr/bin/env perl 
 #
 # https://blog-en.openalfa.com/how-to-read-and-write-json-files-in-perl 
 
 use strict;
 # use warnings;
-use lib '/usr/lib/x86_64-linux-gnu/perl5/5.26/Algorithm/';
 
-use Combinatorics;
+use Algorithm::Combinatorics;
 
  
 binmode STDOUT, ":utf8";
