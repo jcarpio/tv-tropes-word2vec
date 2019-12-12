@@ -1,4 +1,4 @@
-#!/usr/bin/perl -d
+#!/usr/bin/perl
 #
 # https://blog-en.openalfa.com/how-to-read-and-write-json-files-in-perl 
 
@@ -16,7 +16,7 @@ use JSON;
 
 my $DEBUG = 1;
 my $max_tropes = 10;
-my $min_tropes = 0;
+my $min_tropes = 7;
 my $ngram_size = 7;
 
 my $json;
@@ -71,7 +71,7 @@ foreach $key (keys %{$data}) { # foreach film name remove tropes
       print "combinations of $ngram_size from: ".join(" ",@{$film_data})."\n";
       print "-" .("--" x scalar(@{$film_data}))."\n";
       while(my $combo = $combinat->next) {
-         print "$combo\n";
+         print "@{$combo}\n";
       }
    }
    print "\n";
