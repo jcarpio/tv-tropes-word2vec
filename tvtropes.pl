@@ -5,9 +5,9 @@
 use strict;
 # use warnings;
 
-use Algorithm::Combinatorics;
+use Algorithm::Combinatorics qw(combinations);
 
- 
+
 binmode STDOUT, ":utf8";
 use utf8;
  
@@ -15,7 +15,7 @@ use JSON;
 
 my $DEBUG = 1;
 my $max_tropes = 10;
-my $min_tropes = 0;
+my $min_tropes = 7;
 my $ngram_size = 7;
 
 my $json;
@@ -64,15 +64,14 @@ close $fh;
 foreach $key (keys %{$data}) { # foreach film name remove tropes
                                # not included in selected tropes set
    $film_data = $data->{$key};
-   my $combinat = Combinatorics->new(count => $ngram_size,
-                                        data => [@{$film_data}],
-                                       );
-
-   print "combinations of $ngram_size from: ".join(" ",@{$film_data})."\n";
-   print "-" .("--" x scalar(@{$film_data}))."\n";
-   while(my @combo = $combinat->next_combination){
-      print join(' ', @combo)."\n";
+   my $num_tropes = scalar @{$film_data};
+   if ($num_tropes >= $ngram_size) {
+      my $combinat = combinations(\@{$film_data}, $ngram_size);
+      print "combinations of $ngram_size from: ".join(" ",@{$film_data})."\n";
+      print "-" .("--" x scalar(@{$film_data}))."\n";
+      while(my $combo = $combinat->next) {
+         print "@{$combo}\n";
+      }
    }
- 
    print "\n";
 }
