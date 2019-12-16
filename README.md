@@ -1,13 +1,13 @@
 # tv-tropes-word2vec
 TV Tropes and Word2vec paper
 
-Usage: tvtropes.pl <json_file> <max_tropes> <ngram_size> 
+Usage: tvtropes.pl <json_file> <max_tropes> <ngram_size> <add_film_name>
 
-./tvtropes.pl tvtropes.json 15 9
+./tvtropes.pl tvtropes.json 15 9 1
 
 You will get following files:
 
-ngrams_15_taken_9.txt  -- combinations of 15 tropes taken from 9 to 9 for each film
+ngrams_15_taken_9_add_film_name1.txt  -- combinations of 15 tropes taken from 9 to 9 for each film
 films_15_taken_9.txt   -- films with tropes size between 9 and 15 both inclusive
 less_than_16_taken_9.json  -- json file created from original deleting films out of range [9-15]
 tropes_set_15_taken_9.txt  -- tropes set of films in range [9-15]
