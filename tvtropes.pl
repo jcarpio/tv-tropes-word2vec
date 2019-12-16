@@ -15,8 +15,8 @@ use utf8;
 use JSON;
 
 my $num_args = $#ARGV + 1;
-if ($num_args != 3) {
-    print "Usage: tvtropes.pl <json_file> <max_tropes> <ngram_size>\n";
+if ($num_args != 4) {
+    print "Usage: tvtropes.pl <json_file> <max_tropes> <ngram_size> <add_film_name>\n";
     exit;
 }
 
@@ -24,6 +24,7 @@ my $DEBUG = 0;
 my $max_tropes = $ARGV[1];
 my $min_tropes = $ARGV[2];
 my $ngram_size = $ARGV[2];
+my $add_film_name = $ARGV[3];
 my $output_dir = "output";
 my $shuffle = 1;
 
@@ -72,7 +73,7 @@ open $fh, ">", "$output_dir/less_than_$max_tropes" . "_taken_$ngram_size.json";
 print $fh encode_json($data);
 close $fh;
 
-open $fh, ">", "$output_dir/ngrams_$max_tropes" . "_taken_$ngram_size.txt";
+open $fh, ">", "$output_dir/ngrams_$max_tropes" . "_taken_$ngram_size" . "_add_film_name$add_film_name.txt";
 # creating combinations n-grams of n_grams_size
 foreach $key (keys %{$data}) { # foreach film name remove tropes
                                # not included in selected tropes set
@@ -86,9 +87,11 @@ foreach $key (keys %{$data}) { # foreach film name remove tropes
       }
 
       while(my $combo = $combinat->next) {
+         my $middle = int($num_tropes/2); # integer division
+         splice @{$combo}, $middle, 0, "$key"; # insert film name in the middle of tropes array
          my @new_array = shuffle(@{$combo});
          if ($shuffle) {
-            print $fh "@new_array. ";
+            print $fh "@new_array. "; 
          } else {
             @new_array = @{$combo};
             print $fh "@new_array. ";
