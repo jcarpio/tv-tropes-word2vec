@@ -5,22 +5,17 @@ from gensim.models import Word2Vec, KeyedVectors
 
 model =  KeyedVectors.load_word2vec_format('ngrams_15_taken_9_vectors.bin', binary= True)
 
-vector = model.wv['ElegantClassicalMusician']
+# vector = model.wv['ElegantClassicalMusician']
 
-print(vector)
+# print(vector)
 
-output = model.most_similar(['girl', 'father'], ['boy'], topn=3)
+path = './output/tropes_set_15_taken_9.txt'
+tropes_file = open(path,'r')
 
-print(output)
-
-output = model.most_similar(positive=['woman', 'king'], negative=['man'], topn=1)
-
-print(output)
-
-output = model.doesnt_match(['breakfast', 'cereal', 'dinner', 'lunch'])
-
-print(output)
-
-output = model.similarity('woman', 'man')
-
-print(output)
+for trope_line in tropes_file:
+   if trope_line.rstrip() in model.vocab:
+      vector = model.wv[trope_line.rstrip()]
+      print(*vector)
+      print(trope_line.rstrip())
+#   else:
+      # print("not in vocab " + trope_line.rstrip())  
