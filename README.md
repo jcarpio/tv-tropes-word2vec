@@ -30,3 +30,6 @@ time ./word2vec -train ngrams_15_taken_9.txt -output ngrams_15_taken_9_vectors.b
 word2vec manipulation
 
 python3 word2vec.py
+
+
+![som image](som_matlab_tropes_15_9.png)
