@@ -1,3 +1,4 @@
+import sys
 from gensim.test.utils import common_texts, get_tmpfile
 from gensim.models import Word2Vec, KeyedVectors
 
@@ -15,7 +16,9 @@ tropes_file = open(path,'r')
 for trope_line in tropes_file:
    if trope_line.rstrip() in model.vocab:
       vector = model.wv[trope_line.rstrip()]
-      print(*vector)
-      print(trope_line.rstrip())
+      if len(vector) == 200:
+         # print(len(vector))  # vector length 200
+         print(*vector)
+         print(trope_line.rstrip())
 #   else:
       # print("not in vocab " + trope_line.rstrip())  
