@@ -32,4 +32,5 @@ word2vec manipulation
 python3 word2vec.py
 
 
-![som image](som_matlab_tropes_15_9.png)
+![som distance image](som_matlab_tropes_15_9.png)
+![som hits image](som_matlab_weight_hits_15_9.png)
