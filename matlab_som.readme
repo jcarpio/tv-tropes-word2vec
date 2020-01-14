@@ -1,6 +1,7 @@
 
 y = readmatrix("C:\Users\Jose\Desktop\trope_vectors_matlab.txt") # carga los vectores en una matriz
 y=y(:,1:end-1) # elimina la última columna con las etiquetas
+y=y'; # los datos estan el las filas, y no en las columnas
 net = selforgmap([12 12]); # crea un mapa SOM 12x12, este ser  a el paso 3
 net = train(net,y); # lanza el entrenamiento
 
