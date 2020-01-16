@@ -1,0 +1,18 @@
+https://towardsdatascience.com/a-beginners-guide-to-word-embedding-with-gensim-word2vec-model-5970fa56cc92
+
+Word embedding is one of the most important techniques in natural language processing(NLP),
+where words are mapped to vectors of real numbers. Word embedding is capable of capturing 
+the meaning of a word in a document, semantic and syntactic similarity, relation with other 
+words. It also has been widely used for recommender systems and text classification. This 
+tutorial will show a brief introduction of genism word2vec model with an example of 
+generating word embedding for the vehicle make model.
+
+1. Introduction of Word2vec
+
+Word2vec is one of the most popular technique to learn word embeddings using a two-layer 
+neural network. Its input is a text corpus and its output is a set of vectors. Word embedding 
+via word2vec can make natural language computer-readable, then further implementation of 
+mathematical operations on words can be used to detect their similarities. A well-trained 
+set of word vectors will place similar words close to each other in that space. For instance, 
+the words women, men, and human might cluster in one corner, while yellow, red and blue 
+cluster together in another.
