@@ -68,38 +68,3 @@ foreach $key (keys %tropes)
    print $fh "$key\n";
 }
 close $fh;
-
-open $fh, ">", "$output_dir/less_than_$max_tropes" . "_taken_$ngram_size.json";
-print $fh encode_json($data);
-close $fh;
-
-open $fh, ">", "$output_dir/ngrams_$max_tropes" . "_taken_$ngram_size" . "_add_film_name$add_film_name.txt";
-# creating combinations n-grams of n_grams_size
-foreach $key (keys %{$data}) { # foreach film name remove tropes
-                               # not included in selected tropes set
-   $film_data = $data->{$key};
-   my $num_tropes = scalar @{$film_data};
-   if ($num_tropes >= $ngram_size) {
-      my $combinat = combinations(\@{$film_data}, $ngram_size);
-      if ($DEBUG) { 
-         print "combinations of $ngram_size from: ".join(" ",@{$film_data})."\n";
-         print "-" .("--" x scalar(@{$film_data}))."\n";
-      }
-
-      while(my $combo = $combinat->next) {
-         my $middle = int($num_tropes/2); # integer division
-         splice @{$combo}, $middle, 0, "$key"; # insert film name in the middle of tropes array
-         my @new_array = shuffle(@{$combo});
-         if ($shuffle) {
-            print $fh "@new_array. "; 
-         } else {
-            @new_array = @{$combo};
-            print $fh "@new_array. ";
-         } 
-      }
-      print $fh "\n";
-   }
-   print $fh "\n";
-}
-
-close $fh;
