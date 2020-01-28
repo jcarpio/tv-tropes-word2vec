@@ -28,20 +28,40 @@
 \maketitle
 \begin{abstract}
 \begin{quote}
-In this paper we present a generalized approach to extend the use of word2vec for non traditional NLP (Natural Language Processing). In order to exemplify the idea we use tvtropes dataset (trope names and film names only) to create a text corupus in order to give contextual information to any pice of data.   
+In this paper we present a generalized approach to extend the use of word2vec for non traditional NLP (Natural Language Processing). In order to exemplify the idea we use tvtropes dataset (trope names and film names only) to create a text corupus in order to give contextual information to any pice of data.
 \end{quote}
 \end{abstract}
 
 \section{Introduction}
 
-One of the most important elements in NPL (Natural Language Processing) is the context where words appear inside a text. One of the most popular algorithms to associte numerical vectors to words is word2vec \cite{mikolov2013}. This algorithm use words that are before and after a target word in order to contextualize words. But, what happend if we don't have a text to start analyzing words? What happend if we only have relationships between terms like this trope appear in this film? For this type of problem we purpouse a generalization in the use of word2vec algorithm that let to build a context for related terms. 
+% Motivation: we need to have a representation that is
+% * That includes the context of the trope
+% * relatively compact
+% * capable of doing arithmetic
+% * uniform for tropes and movies.
 
-(Talk about A Neural Network System for Transformation of Regional Cuisine Style \cite{kazama2018} and other non-NLP word2vec use like E-commerce in Your Inbox: Product Recommendations at Scale \cite{Grbovic2015} or Meta-Prod2Vec - Product Embeddings Using Side-Information for Recommendation \cite{vasile2016}
+
+% How we want to solve that problem: we think that an adaptation of word2vec should be possible
+One of the most important elements in NLP (Natural Language Processing) is the context where words appear inside a text. One of the most popular algorithms to associte numerical vectors to words is word2vec \cite{mikolov2013}. This algorithm use words that are before and after a target word in order to contextualize words. But, what happend if we don't have a text to start analyzing words? What happend if we only have relationships between terms like this trope appear in this film? For this type of problem we purpouse a generalization in the use of word2vec algorithm that let to build a context for related terms. 
+
+% (Talk about A Neural Network System for Transformation of Regional Cuisine Style \cite{kazama2018} and other non-NLP word2vec use like E-commerce in Your Inbox: Product Recommendations at Scale \cite{Grbovic2015} or Meta-Prod2Vec - Product Embeddings Using Side-Information for Recommendation \cite{vasile2016}
+
+% How we do it:
+% * Methodology for creating the context of every trope
+% * Methdology for representing movies using trope vector
+% * How we evaluate the goodness of the set of movies/tropes chosen.
+
+% Our results
+% * Clustering
+% * Graph representation
+% * Movie representation
+% * Example of synthetic movie generation.
 
 More information here about non-NLP word2vec
 https://towardsdatascience.com/embeddings-with-word2vec-in-non-nlp-contexts-details-e879b093d34d
 % Continue here
 
+\section{State of the art}
 
 \section{Methodology}
 
