@@ -40,9 +40,13 @@ In this paper we present a generalized approach to extend the use of word2vec fo
 % * capable of doing arithmetic
 % * uniform for tropes and movies.
 
+Tv Tropes (tvtropes.org) is a collaborative website created in 2004 to talk about tips, narrative or cinematographic techniques used in creative works such as movies, tv series, advertaising, videogames, sports, comics or books. tvtropes.org describe tropes in this way: "A trope is a storytelling device or convention, a shortcut for describing situations the storyteller can reasonably assume the audience will recognize." Articles (named tropes) are writed usually with a very expresive and non formal vocabular. Each film, tv serie or other fiction element usually include a description and a list of asociated tropes. Tropes are clasified in this four main categories: Genre Tropes, Media Tropes, Narrative Tropes, Topical Tropes and tropes pages usually contains a description followed by a list of films o narrative resource that uses this trope.   
 
 % How we want to solve that problem: we think that an adaptation of word2vec should be possible
-One of the most important elements in NLP (Natural Language Processing) is the context where words appear inside a text. One of the most popular algorithms to associte numerical vectors to words is word2vec \cite{mikolov2013}. This algorithm use words that are before and after a target word in order to contextualize words. But, what happend if we don't have a text to start analyzing words? What happend if we only have relationships between terms like this trope appear in this film? For this type of problem we purpouse a generalization in the use of word2vec algorithm that let to build a context for related terms. 
+
+
+
+% One of the most important elements in NLP (Natural Language Processing) is the context where words appear inside a text. One of the most popular algorithms to associte numerical vectors to words is word2vec \cite{mikolov2013}. This algorithm use words that are before and after a target word in order to contextualize words. But, what happend if we don't have a text to start analyzing words? What happend if we only have relationships between terms like this trope appear in this film? For this type of problem we purpouse a generalization in the use of word2vec algorithm that let to build a context for related terms. 
 
 % (Talk about A Neural Network System for Transformation of Regional Cuisine Style \cite{kazama2018} and other non-NLP word2vec use like E-commerce in Your Inbox: Product Recommendations at Scale \cite{Grbovic2015} or Meta-Prod2Vec - Product Embeddings Using Side-Information for Recommendation \cite{vasile2016}
 
