@@ -46,13 +46,13 @@ Tv Tropes (tvtropes.org) is a collaborative website created in 2004 to talk abou
 
 A first approach to represent films and tropes relationship will be a multidimensional vector for each film, where each component will have 1 if the trope is included in this film or 0 if the trope is not included.  
 
-   \{t1, t2, t3, ...., tn \} 
-   
+   \{t1, t2, t3, ...., tn \}    
    
 This approach have many disadvanteges. First of then are the difficult to deal with vectors with thousands dimensions. Other disavantage is that we have no possibility to do terms arithmetics. For example, will be interesting to Film1 - Western + Japanese = Film2 . The result of this arithmetic operation will be a film similar to Film1, but changing western style to japanese look. We can do this type of operations applying technics like word2vec \cite{mikolov2013}.  
 
-Word2vec and similar technics are capable to add the context to the numerical vector that represents a word. This vector are created using the sorrounding terms included in a natural language text. In this way, the associated vector contains the meaning of this word extracted from the text used to build the model. After training process it is possible for example to ask Doctor - Man + Woman = ? . Logic tell us that the result will be Doctor (woman), instead, and it depends on how the text used to train the model "talk" about concepts, the result often will be "nurse".  
+Word2vec and similar technics are capable to add the context to the numerical vector that represents a word. This vector are created using the sorrounding terms included in a natural language text. In this way, the associated vector contains the meaning of this word extracted from the text used to build the model. After training process it is possible for example to ask Doctor - Man + Woman = ? . Logic tell us that the result will be Doctor (woman), instead, and it depends on how the text used to train the model "talk" about concepts, the result will be "nurse".  
    
+% How word2vec works?   
 
 % How we want to solve that problem: we think that an adaptation of word2vec should be possible
 
