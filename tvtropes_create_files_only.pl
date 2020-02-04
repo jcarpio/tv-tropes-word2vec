@@ -21,12 +21,10 @@ if ($num_args != 1) {
 }
 
 my $DEBUG = 1;
-my $max_tropes = $ARGV[1];
-my $min_tropes = $ARGV[2];
-my $ngram_size = $ARGV[2];
-my $add_film_name = $ARGV[3];
 my $output_dir = "output";
 my $shuffle = 1;
+my $max_tropes = 0;
+my $min_tropes = 99999999999;
 
 my $json;
 
@@ -48,6 +46,9 @@ open my $fh_films, ">", "$output_dir/all_films.txt";
 foreach $key (keys %{$data}) { # foreach film name
   $film_data = $data->{$key};
   my $num_tropes = scalar @{$film_data};
+  
+  if ($num_tropes > $max_tropes) { $max_tropes = $num_tropes; }
+  if ($num_tropes < $min_tropes) { $min_tropes = $num_tropes; }
 
   print $fh_films "$key num_tropes: $num_tropes\n"; # create all films file
 
@@ -63,3 +64,6 @@ foreach $key (keys %tropes)
    print $fh "$key\n";
 }
 close $fh;
+
+print "min_tropes = $min_tropes\n";
+print "max_tropes = $max_tropes\n";
