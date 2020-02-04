@@ -1,4 +1,4 @@
-#!/usr/bin/env perl 
+#!/usr/bin/env perl
 #
 # https://blog-en.openalfa.com/how-to-read-and-write-json-files-in-perl 
 
@@ -20,7 +20,7 @@ if ($num_args != 4) {
     exit;
 }
 
-my $DEBUG = 0;
+my $DEBUG = 1;
 my $max_tropes = $ARGV[1];
 my $min_tropes = $ARGV[2];
 my $ngram_size = $ARGV[2];
@@ -43,13 +43,14 @@ my $data = decode_json($json);
 my %tropes;
 my $film_data;
 
+open my $fh_films, ">", "$output_dir/films.txt";
 open my $fh, ">", "$output_dir/films_$max_tropes" . "_taken_$ngram_size.txt";
 
 foreach $key (keys %{$data}) { # foreach film name
   $film_data = $data->{$key};
   my $num_tropes = scalar @{$film_data};
 
-  if ($DEBUG) { print "$key num_tropes: $num_tropes\n"; } # if DEBUG print all films
+  print $fh_films "$key num_tropes: $num_tropes\n"; } # create all films file
 
   if ($num_tropes <= $max_tropes && $num_tropes >= $min_tropes) {
      print $fh "$key num_tropes: $num_tropes\n";
@@ -61,6 +62,7 @@ foreach $key (keys %{$data}) { # foreach film name
   }
 }
 close $fh;
+close $fh_films;
 
 open $fh, ">", "$output_dir/tropes_set_$max_tropes". "_taken_$ngram_size.txt";
 foreach $key (keys %tropes)

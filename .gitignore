@@ -1,4 +1,5 @@
 output/
+output_old/
 *.bin
 *.gz
 .DS_Store
