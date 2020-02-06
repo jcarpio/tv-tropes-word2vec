@@ -1,5 +1,6 @@
 output/
 output_old/
+data/json/
 *.bin
 *.gz
 .DS_Store
