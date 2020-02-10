@@ -41,7 +41,7 @@ In this paper we present a generalized approach to extend the use of word2vec fo
 % * capable of doing arithmetic
 % * uniform for tropes and movies.
 
-Our goal is to find a knowledge representation and a new methodology that let us to apply machine learning techniques to tropes and films from tvtropes.org in order to discover hidden conections between the different elements of this website. That new representation and methodology will let us, for example, to discover wich set of tropes will be affordable to create a new block buster film or a new best seller book.   
+This work aims to find a knowledge representation and a new methodology to apply machine learning techniques to tropes and films from tvtropes.org in order to discover hidden conections between the different elements of this website. That new representation and methodology will let us, for example, to discover wich set of tropes will be affordable to create a new block buster film or a new best seller book.   
 
 Tv Tropes (tvtropes.org) is a collaborative website created in 2004 to share information about tips, narrative or cinematographic techniques used in creative works such as movies, tv series, advertaising, videogames, sports, comics or books. Tvtropes.org defines "tropes" as: "A trope is a storytelling device or convention, a shortcut for describing situations the storyteller can reasonably assume the audience will recognize." Articles to describe tropes are writed usually with a very expresive and non formal vocabulary. Each film, tv serie or other fiction element usually include a description and a list of asociated tropes. Tropes pages usually contains a description followed by a list of films or a narrative resource that uses this trope.   
 
@@ -64,14 +64,11 @@ A first approach to represent films and tropes relationship would be to create a
    \\ Vector representation for word "car" = \{1, 0, 0, 0, 0 \}    
 \end{center}
 
-\\
-\\   
 This approach have many disadvanteges. First of then are the difficult to deal with vectors with thousands dimensions. Other disavantage is that we have no possibility to do terms arithmetics. For example, will be interesting to Film1 - Western + Japanese = Film2 . The result of this arithmetic operation will be a film similar to Film1, but changing western style to japanese look. We can do this type of operations applying technics like word2vec \cite{mikolov2013}.  
 
 Word2vec and similar technics are capable to add the context to the numerical vector that represents a word. This vector are created using the sorrounding terms included in a natural language text. In this way, the associated vector contains the meaning of this word extracted from the text used to build the model. After training process it is possible for example to ask Doctor - Man + Woman = ? . Logic tell us that the result will be Doctor (woman), instead, and it depends on how the text used to train the model "talk" about concepts, the result will be "nurse".  
    
 After apply word2vect to a text corpus, a set of embeedings vectors will be created. The embeeding vector have information about the context of a certain word and it is easy to find the relationships with other terms in corpus. The challenge now is how to create a corpus that will be usefull to find relationships between tropes and films. Each film have a description and a list of tropes, and each trope have a description and a list of films that uses this trope. Initially our dataset obtained from tvtropes.org 13th december 2019 included 12360 films and 26742 different tropes (25405 after remove duplicates). The film with higher number of tropes has 1028 tropes and the film with minimum number of tropes has 0 tropes. 673258 pairs film-trope. 73917 duplicate values in pairs. 
-
 
 \begin{figure}
 	\centering
