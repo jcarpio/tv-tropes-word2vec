@@ -11,3 +11,4 @@ data/json/
 *.bbl
 *.syntex*
 *.save
+auto/
