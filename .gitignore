@@ -9,3 +9,6 @@ data/json/
 *.aux
 *.log
 *.bbl
+*.syntex*
+*.save
+auto/
