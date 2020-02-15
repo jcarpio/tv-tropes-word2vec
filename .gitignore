@@ -9,6 +9,6 @@ data/json/
 *.aux
 *.log
 *.bbl
-*.syntex*
+*.synctex*
 *.save
 auto/
