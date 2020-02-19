@@ -87,13 +87,19 @@
         \section{State of the art}
 
         This work has been inspired by other that have used
-        word2vec-like embeddings fot purposes that are totally
+        word2vec-like embeddings for purposes that are totally
         unrelated to natural language; a good survey is presented in
         \cite{nonnlp19}. In general, creating embeddings out of data
         is done with several purposes: reducing dimensionality, but
         also trying to create a data representation with semantics; as
         a side effect, this data representation will enable ``content
-        arithmetics''.
+        arithmetics''. In our previous work
+        \cite{doi:10.1111/exsy.12525} we used a direct representation
+        of tropes; every dimension in a vector represented a trope,
+        once less frequent ones had been excluded. However, this left
+        out many possibly meaningful tropes, and still the size of the
+        vectors was huge, representing its own challenge when using
+        them in a deep learning algorithm.
 
         This was one of the intentions of Kazama et al. in
         \cite{kazama2018}, which is actually the paper that inspired
