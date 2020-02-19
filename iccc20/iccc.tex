@@ -74,8 +74,19 @@
 	 
 	The challenge now is how to create a corpus that will be usefull to find relationships between tropes and films. Each film have a description and a list of tropes, and each trope have a description and a list of films that uses this trope. Initially our dataset obtained from tvtropes.org 13th december 2019 included 12360 films and 26742 different tropes (25405 after remove duplicates). The film with higher number of tropes has 1028 tropes and the film with minimum number of tropes has 0 tropes. Tvtropes dataset has 673258 pairs film-trope. 73917 duplicate values in pairs. After apply word2vect to artificially created corpus, a set of embeedings vectors will be created. The embeeding vector integrate information about the context of a certain word and it is easy to find the relationships with other terms in corpus.\\
 	
+    The size of the corpus of variations without repetition of 15 tropes taken from 9 in 9 is 288Mbytes. 9-size phrases have been created by making variations without repetition and ordering the result randomly \\
 	
+	\begin{center}
 	
+	${v}_{m,n} = m.(m-1).(m-2)...(m-n+1)$
+	${v}_{15,9} = 1816214400$
+	
+    \end{center}
+	
+	Below is an example of the generated file:
+	\texttt{    
+	ChuckCunninghamSyndrome AccidentalMisnaming EpicFail CassandraTruth BeeAfraid AgonyOfTheFeet Fainting BandageMummy Fingore. EpicFail AccidentalMisnaming CassandraTruth BandageMummy BeeAfraid ChuckCunninghamSyndrome Fainting AgonyOfTheFeet Invisibility. PopTheTires EpicFail Fainting BandageMummy AccidentalMisnaming AgonyOfTheFeet ChuckCunninghamSyndrome CassandraTruth BeeAfraid. AccidentalMisnaming ScreamsLikeALittleGirl AgonyOfTheFeet CassandraTruth BeeAfraid Fainting ChuckCunninghamSyndrome EpicFail BandageMummy.}
+		
 	\begin{center}
 		\begin{figure}
 			\centering
