@@ -83,9 +83,22 @@
 	
     \end{center}
 	
-	Below is an example of the generated file:
+	Below first lines of corpus generated file:\\
 	\texttt{    
-	ChuckCunninghamSyndrome AccidentalMisnaming EpicFail CassandraTruth BeeAfraid AgonyOfTheFeet Fainting BandageMummy Fingore. EpicFail AccidentalMisnaming CassandraTruth BandageMummy BeeAfraid ChuckCunninghamSyndrome Fainting AgonyOfTheFeet Invisibility. PopTheTires EpicFail Fainting BandageMummy AccidentalMisnaming AgonyOfTheFeet ChuckCunninghamSyndrome CassandraTruth BeeAfraid. AccidentalMisnaming ScreamsLikeALittleGirl AgonyOfTheFeet CassandraTruth BeeAfraid Fainting ChuckCunninghamSyndrome EpicFail BandageMummy.}
+	ChuckCunninghamSyndrome AccidentalMisnaming EpicFail CassandraTruth BeeAfraid AgonyOfTheFeet Fainting BandageMummy Fingore. EpicFail AccidentalMisnaming CassandraTruth BandageMummy BeeAfraid ChuckCunninghamSyndrome Fainting AgonyOfTheFeet Invisibility. PopTheTires EpicFail Fainting BandageMummy AccidentalMisnaming AgonyOfTheFeet ChuckCunninghamSyndrome CassandraTruth BeeAfraid. AccidentalMisnaming ScreamsLikeALittleGirl AgonyOfTheFeet CassandraTruth BeeAfraid Fainting ChuckCunninghamSyndrome EpicFail BandageMummy.}\\
+
+    Following line represent word2vec train parameters:\\
+\begin{verbatim}
+/word2vec 
+-train ngrams_15_taken_9.txt 
+-output ngrams_15_taken_9.bin 
+-cbow 1 -size 200 -window 8 
+-negative 25 -hs 0 
+-sample 1e-4 -threads 20 
+-binary 1 -iter 15
+\end{verbatim}
+
+
 		
 	\begin{center}
 		\begin{figure}
