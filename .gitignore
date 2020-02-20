@@ -9,6 +9,7 @@ data/json/
 *.pdf
 *.aux
 *.log
+!CHANGE.log
 *.bbl
 *.synctex*
 *.save
