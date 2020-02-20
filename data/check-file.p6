@@ -1,8 +1,8 @@
 #!/usr/bin/env raku
 
-my @lines = "txt/trope_vectors_format2.txt".IO.lines;
+my @lines = "txt/trope_vectors.txt".IO.lines;
 
-for @lines -> $l {
+for @lines -> $l, $label {
     my @components = $l.split( /\s+/ );
-    say @components[*-1] if  @components.elems < 201;
+    say @components.join(", "), ", $label";
 }
