@@ -12,3 +12,5 @@ data/json/
 *.synctex*
 *.save
 auto/
+
+*~
