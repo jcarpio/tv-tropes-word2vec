@@ -1,0 +1,3 @@
+
+checking_tropes_15_9_quality.xlsm 
+   created to check the quality of subset of tropes from films with maximum 15 tropes (15-films-subset). Here we have ordered tropes by number of times the trope appear in any film (column A), column B represents the number of times the associated trope appear in one film, Column E represents tropes in subset, Column G same as column E but adding ="=<trope_name>" necesary to select exact field (and not a substring) when using advanced filters from Data menu. K represents the selection of tropes from subset 15-fimls-subset that are in first 250 more popular tropes. Here we can see, 248 from the 250 more popular tropes are included in subset. 

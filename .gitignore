@@ -1,6 +1,7 @@
 data/
 output/
 output_old/
+data/json/
 *.bin
 *.gz
 .DS_Store
@@ -9,3 +10,8 @@ output_old/
 *.aux
 *.log
 *.bbl
+*.synctex*
+*.save
+auto/
+
+*~
