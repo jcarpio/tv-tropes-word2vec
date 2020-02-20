@@ -27,7 +27,7 @@ my $ngram_size = $ARGV[2];
 my $add_film_name = $ARGV[3];
 my $output_dir = "output";
 my $shuffle = 1;
-
+my $to_lowercase = 1;
 my $json;
 
 my $file_name = $ARGV[0] // "tvtropes.json";
@@ -50,7 +50,7 @@ foreach $key (keys %{$data}) { # foreach film name
   $film_data = $data->{$key};
   my $num_tropes = scalar @{$film_data};
 
-  print $fh_films "$key num_tropes: $num_tropes\n"; } # create all films file
+  print $fh_films "$key num_tropes: $num_tropes\n"; # create all films file
 
   if ($num_tropes <= $max_tropes && $num_tropes >= $min_tropes) {
      print $fh "$key num_tropes: $num_tropes\n";
@@ -89,14 +89,18 @@ foreach $key (keys %{$data}) { # foreach film name remove tropes
       }
 
       while(my $combo = $combinat->next) {
-         my $middle = int($num_tropes/2); # integer division
-         splice @{$combo}, $middle, 0, "$key"; # insert film name in the middle of tropes array
-         my @new_array = shuffle(@{$combo});
+         if ($add_film_name) { 
+            my $middle = int($num_tropes/2); # integer division
+            splice @{$combo}, $middle, 0, "$key"; # insert film name in the middle of tropes array
+         }
+         my @new_array = @{$combo};
          if ($shuffle) {
-            print $fh "@new_array. "; 
+            @new_array = shuffle(@new_array);
+            if ($to_lowercase) { @new_array = map { lc } @new_array; } 
+            print $fh "@new_array . "; 
          } else {
-            @new_array = @{$combo};
-            print $fh "@new_array. ";
+            if ($to_lowercase) { @new_array = map { lc } @new_array; }
+            print $fh "@new_array . ";
          } 
       }
       print $fh "\n";
