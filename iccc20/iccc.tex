@@ -80,10 +80,14 @@
 	% * Movie representation
 	% * Example of synthetic movie generation.
 	
-	% More information here about non-NLP word2vec
-	% https://towardsdatascience.com/embeddings-with-word2vec-in-non-nlp-contexts-details-e879b093d34d
-	% Continue here
+The rest of the paper is organized as follows. Next we present the
+state of the art in using embeddings for problems other than language
+processing, as well as an overview of the use of tropes for narrative
+generation. The methodology is presented next in Section
+\ref{sec:met}, with results presented in Section \ref{sec:res}
+followed by the conclusion that closes the paper.
 
+        
 \section{State of the art}
 
 Unlike systems such as MovieLens \cite{10.1145/2827872}, which focus
@@ -163,6 +167,171 @@ the narrative.
 
 
 	\section{Methodology}
+{sec:met}
+
+        
+\section{State of the art}
+
+Unlike systems such as MovieLens \cite{10.1145/2827872}, which focus
+on recommendation, our ultimate
+interest in representing movie tropes lies in the possibility of
+generating narratives \cite{10.5555/931357} that are optimal from some point of view (mainly
+coherence) from a set of tropes. Out of all the possible methods to
+generate narratives \cite{van2019narrative} this is one that has
+probably been explored the least; Sullivan et
+al. \cite{10.1145/3235765.3235819} used tropes in the tarot deck to
+generate narratives via combinations, but other than that, in general
+the presence of tropes has been used more for evaluation of generated
+narratives \cite{gervas2012story} that as part of the generation
+itself; in general, tropes are understood as constraints for
+characters or plots \cite{Thompson18NarrativeEvents}, but, of course,
+there are many kind of tropes and some of them can be converted
+directly into plots; for instance, {\sf AgeStereotypicalFood} informs
+of the fact that eating or talking about food will be introduced into
+the narrative.
+
+        This work has been inspired by other that have used
+        word2vec-like embeddings for purposes that are totally
+        unrelated to natural language; a good survey is presented in
+        \cite{nonnlp19}. In general, creating embeddings out of data
+        is done with several purposes: reducing dimensionality, but
+        also trying to create a data representation with semantics; as
+        a side effect, this data representation will enable ``content
+        arithmetics''. In our previous work
+        \cite{doi:10.1111/exsy.12525} we used a direct representation
+        of tropes; every dimension in a vector represented a trope,
+        once less frequent ones had been excluded. However, this left
+        out many possibly meaningful tropes, and still the size of the
+        vectors was huge, representing its own challenge when using
+        them in a deep learning algorithm.
+
+        This was one of the intentions of Kazama et al. in
+        \cite{kazama2018}, which is actually the paper that inspired
+        our work. The content they wanted to represent was the concept
+        of ``regional cuisine'', so that a regional cuisine embedding
+        could be added or substracted from the embedding of a dish to
+        create a new, equivalent one in that new regional
+        environment. The kind of data they were working with is
+        similar to the one we use in this paper: dish ingredients. As
+        in our case, there's no natural order in the ingredients, but
+        unlike our case, the amount of ingredients that are used in a
+        dish are really limited, at least if you exclude
+        seasoning. But they achieved their objective: being able to do
+        recipe arithmetics, but also create meaningful maps of food
+        that can be used in deep learning or any other environment.
+
+        Most other applications are similar, in a way, to this one,
+        and most of them are also recent. There was a publication in
+        the Twitter engineering blog \cite{twitter:embeddings},
+        apparently pointing to their use studying the social networks
+        of users. Initial work was done by Grbovic et al. applied it to product recommendation
+        \cite{Grbovic2015}, Vasile et al. applied it to product
+        recommendation systems \cite{vasile2016} while McAuley et
+        al. \cite{DBLP:journals/corr/McAuleyPL15} used embedding
+        arithmetics to find complementary products to others that had
+        been already purchased; these articles were
+        probably ones of the first to use this kind of
+        representation.
+
+        Word embeddings to create clustering, however, go back at
+        least to Kohonen's work in the 90s
+        \cite{kohonen1997exploration}, which tried to create
+        embeddings by assigning a word a vector created from averaging
+        randomly created vectors initially assigned to its neighboring
+        vectors. This work was extended to ant clustering algorithms
+        to create word clusterings by Ramos et
+        al. \cite{DBLP:journals/corr/abs-cs-0412075}.
+
+        The fact that the variety of data embeddings have been applied
+        to, as well as the kind of applications created with is so
+        wide, has encouraged us to apply it to the study of movies via
+        their tropes, as well as its eventual optimization.
+
+
+	\section{Methodology}
+{sec:met}
+
+        
+\section{State of the art}
+
+Unlike systems such as MovieLens \cite{10.1145/2827872}, which focus
+on recommendation, our ultimate
+interest in representing movie tropes lies in the possibility of
+generating narratives \cite{10.5555/931357} that are optimal from some point of view (mainly
+coherence) from a set of tropes. Out of all the possible methods to
+generate narratives \cite{van2019narrative} this is one that has
+probably been explored the least; Sullivan et
+al. \cite{10.1145/3235765.3235819} used tropes in the tarot deck to
+generate narratives via combinations, but other than that, in general
+the presence of tropes has been used more for evaluation of generated
+narratives \cite{gervas2012story} that as part of the generation
+itself; in general, tropes are understood as constraints for
+characters or plots \cite{Thompson18NarrativeEvents}, but, of course,
+there are many kind of tropes and some of them can be converted
+directly into plots; for instance, {\sf AgeStereotypicalFood} informs
+of the fact that eating or talking about food will be introduced into
+the narrative.
+
+        This work has been inspired by other that have used
+        word2vec-like embeddings for purposes that are totally
+        unrelated to natural language; a good survey is presented in
+        \cite{nonnlp19}. In general, creating embeddings out of data
+        is done with several purposes: reducing dimensionality, but
+        also trying to create a data representation with semantics; as
+        a side effect, this data representation will enable ``content
+        arithmetics''. In our previous work
+        \cite{doi:10.1111/exsy.12525} we used a direct representation
+        of tropes; every dimension in a vector represented a trope,
+        once less frequent ones had been excluded. However, this left
+        out many possibly meaningful tropes, and still the size of the
+        vectors was huge, representing its own challenge when using
+        them in a deep learning algorithm.
+
+        This was one of the intentions of Kazama et al. in
+        \cite{kazama2018}, which is actually the paper that inspired
+        our work. The content they wanted to represent was the concept
+        of ``regional cuisine'', so that a regional cuisine embedding
+        could be added or substracted from the embedding of a dish to
+        create a new, equivalent one in that new regional
+        environment. The kind of data they were working with is
+        similar to the one we use in this paper: dish ingredients. As
+        in our case, there's no natural order in the ingredients, but
+        unlike our case, the amount of ingredients that are used in a
+        dish are really limited, at least if you exclude
+        seasoning. But they achieved their objective: being able to do
+        recipe arithmetics, but also create meaningful maps of food
+        that can be used in deep learning or any other environment.
+
+        Most other applications are similar, in a way, to this one,
+        and most of them are also recent. There was a publication in
+        the Twitter engineering blog \cite{twitter:embeddings},
+        apparently pointing to their use studying the social networks
+        of users. Initial work was done by Grbovic et al. applied it to product recommendation
+        \cite{Grbovic2015}, Vasile et al. applied it to product
+        recommendation systems \cite{vasile2016} while McAuley et
+        al. \cite{DBLP:journals/corr/McAuleyPL15} used embedding
+        arithmetics to find complementary products to others that had
+        been already purchased; these articles were
+        probably ones of the first to use this kind of
+        representation.
+
+        Word embeddings to create clustering, however, go back at
+        least to Kohonen's work in the 90s
+        \cite{kohonen1997exploration}, which tried to create
+        embeddings by assigning a word a vector created from averaging
+        randomly created vectors initially assigned to its neighboring
+        vectors. This work was extended to ant clustering algorithms
+        to create word clusterings by Ramos et
+        al. \cite{DBLP:journals/corr/abs-cs-0412075}.
+
+        The fact that the variety of data embeddings have been applied
+        to, as well as the kind of applications created with is so
+        wide, has encouraged us to apply it to the study of movies via
+        their tropes, as well as its eventual optimization.
+
+
+\section{Methodology}
+\label{sec:met}
 	
 	1. Download TvTropes dataset \\
 	2. Select films with number of tropes less than a certain number of tropes. The idea is to create a corpus with sentences constructed by permutations of sub-sets of tropes. \\
@@ -253,7 +422,12 @@ ${v}_{15,9} = 1816214400$
 	4. Build word2vec model. After that we will have a numerical vector for each trope. \\
 	5. Visualize tropes vector space in order to detect clusters and possible data organization. \\ 
 	6. Create a Vector for each film as the sumatory of all tropes vectors. \\
-	
+
+        \section{Results}
+        \label{sec:res}
+        
+        \section{Conclusions, discussion and future work}
+        
 	\section{Acknowledgments}
 	
 	\bibliographystyle{iccc}
