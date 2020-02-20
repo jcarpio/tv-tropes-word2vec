@@ -50,7 +50,7 @@ foreach $key (keys %{$data}) { # foreach film name
   if ($num_tropes > $max_tropes) { $max_tropes = $num_tropes; }
   if ($num_tropes < $min_tropes) { $min_tropes = $num_tropes; }
 
-  print $fh_films "$key num_tropes: $num_tropes\n"; # create all films file
+  print $fh_films "$key num_tropes $num_tropes\n"; # create all films file
 
   foreach my $value (@{$film_data}) { # creating tropes set
         $tropes{$value}= "";
