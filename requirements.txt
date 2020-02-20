@@ -1,1 +1,2 @@
 gensim
+https://github.com/tmikolov/word2vec
