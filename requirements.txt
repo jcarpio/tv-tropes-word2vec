@@ -1,7 +1,1 @@
 gensim
-https://github.com/tmikolov/word2vec
-  - Needed to create embeeding vectors
-    Updated in https://github.com/jcarpio/word2vec to compile
-https://github.com/jcarpio/som_pak
-  - Needed to create SOM graphics 
-    Originally from http://www.cis.hut.fi/research/som_pak/som_pak-3.1.tar and modified to solve a problem to compile 
