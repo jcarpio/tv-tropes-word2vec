@@ -1,36 +1,65 @@
 # tv-tropes-word2vec
-TV Tropes and Word2vec paper
-
-Usage: tvtropes.pl <json_file> <max_tropes> <ngram_size> <add_film_name>
-
-./tvtropes.pl tvtropes.json 15 9 1
-
-You will get following files:
-
-ngrams_15_taken_9_add_film_name1.txt  -- combinations of 15 tropes taken from 9 to 9 for each film
-films_15_taken_9.txt   -- films with tropes size between 9 and 15 both inclusive
-less_than_16_taken_9.json  -- json file created from original deleting films out of range [9-15]
-tropes_set_15_taken_9.txt  -- tropes set of films in range [9-15]
-
-tvtropes.json example:
-
-{
-   "ABBATheMovie": ["ActuallyPrettyFunny", "Adorkable", "AlmostKiss", "AsHimself", "BigHeroicRun", "ButNowIMustGo", "ButtMonkey", "CelebCrush", "ContrivedCoincidence", "CreatorCameo", "DayInTheLife", "DeadpanSnarker", "DirtyOldMan", "DoubleEntendre", "EveryoneIsJesusInPurgatory", "GettingCrapPastTheRadar", "InsistentTerminology", "Instrumentals", "LandingGearShot", "LifeEmbellished", "ManipulativeEditing", "MsFanservice", "MythologyGag", "NonActorVehicle", "Paparazzi", "RaceAgainstTheClock", "RealityHasNoSubtitles", "ReluctantFanserviceGirl", "SexyDiscretionShot", "SilentSnarker", "Squee", "TheCameo", "TheIngenue", "ThemeMusicPowerUp", "ThemeTuneCameo", "ThreeWaySex", "VoxPops", "WardrobeMalfunction", "WardrobeMalfunction", "WhoWearsShortShorts"], 
-
-"ABCsOfDeath2": ["AbusiveParents", "AirVentPassageway", "AirVentPassageway", "AllWomenAreLustful", "AndIMustScream", "AndIMustScream", "AnimalisticAbomination", "ArcWords", "AssShove", "AssShove", "AssholeVictim", "BeCarefulWhatYouWishFor", "BerserkButton", "BittersweetEnding", "BittersweetEnding", "BlackComedy", "BlackComedy", "BloodyHilarious", "BodyHorror", "BodyHorror", "BodyHorror", "BrainTransplant", "BringMyBrownPants", "BuryYourGays", "BuryYourGays", "CallBack", "ChekhovsGun", "CoconutMeetsCranium", "ColdBloodedTorture", "CosmicHorrorStory", "CrapsackWorld", "CreatorCameo", "CreatorCameo", "CreepyGood", "CureYourGays", "CureYourGays", "DaylightHorror", "DaylightHorror", "DaylightHorror", "DeathByChildbirth", "DeathByChildbirth", "DeathOfAChild", "DeathOfAChild", "DeathOfAChild", "DeathOfAChild", "Deconstruction", "DeconstructiveParody", "DerangedAnimation", "DesertedIsland", "DirtyCoward", "DoubleMeaningTitle", "DownerEnding", "DownerEnding", "DownerEnding", "DownerEnding", "DramaticStutter", "DropTheHammer", "DrugsAreBad", "EarAche", "EarnYourHappyEnding", "EldritchAbomination", "EldritchAbomination", "ElectricTorture", "EmpathyDollShot", "EvilOldFolks", "EvilOldFolks", "FacialHorror", "FlippingTheBird", "ForcedToWatch", "Foreshadowing", "FoundFootage", "FoundFootage", "FridgeHorror", "FromBadToWorse", "GayAesop", "GenreShift", "GirlOnGirlIsHot", "GoneHorriblyRight", "GreenEyedMonster", "HalfTheManHeUsedToBe", "HangingJudge", "HatePlague", "HeManWomanHater", "Homage", "Homage", "HumanoidAbomination", "HyperlinkStory", "HyperlinkStory", "IdiotBall", "ImAHumanitarian", "ImmortalityInducer", "ItTastesLikeFeet", "Jerkass", "JokerJury", "KangarooCourt", "KillItWithFire", "KillerRabbit", "LoveTriangle", "MadeOfPlasticine", "MadeOfPlasticine", "ManBitesMan", "ManOnFire", "MaybeMagicMaybeMundane", "MercyKill", "MurderByCremation", "OffWithHerHead", "OffWithHisHead", "OffWithHisHead", "OffingTheOffspring", "OffingTheOffspring", "OffingTheOffspring", "OneManArmy", "ParachuteInATree", "PlayedForLaughs", "PleaseDontLeaveMe", "PowerFantasy", "PublicExecution", "PyrrhicVictory", "RealLife", "RealityWarping", "RearWindowWitness", "RearWindowWitness", "ReliablyUnreliableGuns", "ReliablyUnreliableGuns", "ReligiousHorror", "ReusableLighterToss", "ReversePsychology", "RoaringRampageOfRevenge", "RussianRoulette", "ScrewThisImOuttaHere", "ShoutOut", "ShoutOut", "SmugSnake", "SpiritualSuccessor", "StraightManAndWiseGuy", "StrappedToAnOperatingTable", "StupidSacrifice", "SubvertedKidsShow", "SuddenlyVoiced", "SurpriseIncest", "SurrealHorror", "SurrealHumor", "TakeAThirdOption", "TheAgeless", "TheBadGuyWins", "TheBadGuyWins", "TheBadGuyWins", "TheDogBitesBack", "TheMeanBrit", "TheReveal", "TheReveal", "ThroughTheEyesOfMadness", "TitleDrop", "TragicMistake", "TrappedInTVLand", "UndeadChild", "UtopiaJustifiesTheMeans", "WarIsHell", "WarIsHell", "WhamShot", "WordOfGod", "WouldHurtAChild", "YourCheatingHeart", "ZombieApocalypse", "ZombieApocalypse"]
-}
 
 
-word2vec vectors building model
+* [Overview](#overview)
+* [Folders](#folders)
+   * [data](#daeta-folder)
+   * [iccc20](#iccc20-folder)
+   * [images](#images-folder)
+   * [scripts](#scripts-folder)
+   * [som](#som-folder)
+   * [word2vec](*#word2vec-folder)
 
-time ./word2vec -train ngrams_15_taken_9.txt -output ngrams_15_taken_9_vectors.bin -cbow 1 -size 200 -window 8 -negative 25 -hs 0 -sample 1e-4 -threads 20 -binary 1 -iter 15
+## Overview
 
+   TV Tropes and Word2vec experiments. 
+   In order to execute experiments following packages are required:
+   * som_pack 3. 1
+     Original package from http://www.cis.hut.fi/research/som-research/nnrc-programs.shtml 
+     To download original package http://www.cis.hut.fi/research/som_pak/
+     Original package have an error and it not possible to compile directly. You can use
+     https://github.com/jcarpio/som_pak repository with error 
 
+  * word2vec
+    Original package from https://github.com/tmikolov/word2vec
+    Used to create bin file from ngrams 
 
-word2vec manipulation
+  * gemsim
+    Used in Python script to create tropes vectors 
+    
 
-python3 word2vec.py
+## Folders
+   See README.md inside folder for more information.
 
+### data
+    * bin
+      binary files created with word2vec package
 
-![som distance image](som_matlab_tropes_15_9.png)
-![som hits image](som_matlab_weight_hits_15_9.png)
+    * csv 
+      some data files in csv format
+
+    * excel  
+      some excel files (pending to convert to csv)
+      
+    * gephi  
+      ghephi files used to created some graphics
+
+    * json  
+      files with downloaded tvtropes info and new json files selecting only some films information
+
+    * txt
+      files created from json data like ngrams files, films, tropes, etc.
+
+### iccc20
+    Latex files needed 
+
+### images
+    Images created to use in latex file
+
+### scripts
+    Several scripts to generate ngrams, vectors files, etc.
+
+### som
+    Scripts to create som graphics
+
+### word2vec
