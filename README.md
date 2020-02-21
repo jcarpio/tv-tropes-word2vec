@@ -3,12 +3,12 @@
 
 * [Overview](#overview)
 * [Folders](#folders)
-   * [data](#daeta-folder)
-   * [iccc20](#iccc20-folder)
-   * [images](#images-folder)
-   * [scripts](#scripts-folder)
-   * [som](#som-folder)
-   * [word2vec](*#word2vec-folder)
+   * [data](#data)
+   * [iccc20](#iccc20)
+   * [images](#images)
+   * [scripts](#scripts)
+   * [som](#som)
+   * [word2vec](*#word2vec)
 
 ## Overview
 
@@ -63,3 +63,4 @@
     Scripts to create som graphics
 
 ### word2vec
+    scripts to generate bin model files from ngrams file and other word2vec adapted scripts
