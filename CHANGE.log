@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] - 2020-02-20 19:56
 
+### Changed 
+ - Modified scripts/tvtropes.pl to generate ngrams file from films with tropes number between max_tropes and 2
+   Previous version only generate string form max_tropes to ngram_size, and any film with less than ngram_size
+   tropes was removed.
+
+
+## [Unreleased] - 2020-02-20 19:56
+
 ### Created
  - data/csv folder to convert xlsx filed to csv versions
  - /scripts folder to save there perl and python scripts

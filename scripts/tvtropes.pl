@@ -25,10 +25,18 @@ my $max_tropes = $ARGV[1];
 my $min_tropes = $ARGV[2];
 my $ngram_size = $ARGV[2];
 my $add_film_name = $ARGV[3];
-my $output_dir = "output";
+my $output_dir = "../output/max_tropes_$max_tropes" . "_ngrams_$ngram_size" . "_inc_film_name_$add_film_name";
 my $shuffle = 1;
 my $to_lowercase = 1;
 my $json;
+
+# create output directory if not exist
+if (-e $output_dir and -d $output_dir) {
+    # do nothing
+} else {
+    `mkdir $output_dir`;
+}
+
 
 my $file_name = $ARGV[0] // "tvtropes.json";
 {
@@ -50,12 +58,14 @@ foreach $key (keys %{$data}) { # foreach film name
   $film_data = $data->{$key};
   my $num_tropes = scalar @{$film_data};
 
-  print $fh_films "$key num_tropes: $num_tropes\n"; # create all films file
+  print $fh_films "$key $num_tropes\n"; # create all films file
 
-  if ($num_tropes <= $max_tropes && $num_tropes >= $min_tropes) {
-     print $fh "$key num_tropes: $num_tropes\n";
+  # include all tropes less or equal than $max_tropes and great or equal than 2
+  if ($num_tropes <= $max_tropes && $num_tropes >= 2) {
+     print $fh "$key $num_tropes\n";
      foreach my $value (@{$film_data}) { # creating tropes set
-        $tropes{$value}= "";
+        my $trope_name_lower_case = lc $value;        
+        $tropes{$trope_name_lower_case}= "$value";
      }
   } else {
      delete $data->{$key}; # remove film
@@ -67,7 +77,7 @@ close $fh_films;
 open $fh, ">", "$output_dir/tropes_set_$max_tropes". "_taken_$ngram_size.txt";
 foreach $key (keys %tropes)
 {
-   print $fh "$key\n";
+   print $fh "$tropes{$key}\n";
 }
 close $fh;
 
@@ -97,13 +107,26 @@ foreach $key (keys %{$data}) { # foreach film name remove tropes
          if ($shuffle) {
             @new_array = shuffle(@new_array);
             if ($to_lowercase) { @new_array = map { lc } @new_array; } 
-            print $fh "@new_array . "; 
+            print $fh "@new_array    "; 
          } else {
             if ($to_lowercase) { @new_array = map { lc } @new_array; }
-            print $fh "@new_array . ";
+            print $fh "@new_array    ";
          } 
       }
       print $fh "\n";
+   } else { # print lower than $ngram_size string
+      my @trope_array = @{$film_data};  
+      if ($to_lowercase) { @trope_array = map { lc } @trope_array; }
+
+      if ($DEBUG) {
+         print "ngram string: ".join(" ",@trope_array)."\n";
+         print "-" .("--" x scalar(@trope_array))."\n";
+      }
+
+      foreach my $trope_iter (@trope_array) {
+         print $fh "$trope_iter ";
+      }
+      print "   ";
    }
    print $fh "\n";
 }
