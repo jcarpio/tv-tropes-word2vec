@@ -1,4 +1,3 @@
-% This file is iccc.tex.  It contains the formatting instructions for and acts as a template for submissions to ICCC.  It borrows liberally from the AAAI and IJCAI formats and instructions.  It uses the files iccc.sty, iccc.bst and iccc.bib, the first two of which also borrow liberally from the same sources.
 
 \documentclass[letterpaper]{article}
 \usepackage{iccc}
@@ -35,7 +34,7 @@
 			% they appear. In this paper we will try to extend this concept to
 			% other {\em unordered} contexts. We will try to define this context
 			% for movie (and TV) tropes.
-			In this paper we present a generalized approach to extend the use of word2vec for non traditional NLP (Natural Language Processing). In order to exemplify the idea we use tvtropes dataset (trope names and film names only) to create a text corupus in order to give contextual information to any pice of data.
+			In this paper we present a generalized approach to extend the use of word2vec for non traditional NLP (Natural Language Processing). In order to exemplify the idea we use tvtropes dataset (trope names and film names only) to create a text corpus in order to give contextual information to any piece of data.
 		\end{quote}
 	\end{abstract}
 	
@@ -63,7 +62,7 @@ natural language context. % ← You go from objectives
 % To what you will be doing →
 To exemplify this new methodology, tropes and films from tvtropes.org
 are used. That representation and methodology will let us, for
-example, to discover wich set of tropes will be affordable to create a
+example, to discover which set of tropes will be affordable to create a
 new block buster film or a new best seller book.
 
 % Before telling what you are going to be doing, you need to show the
@@ -73,9 +72,9 @@ new block buster film or a new best seller book.
 % should go to the methodology, not the introduction. You are going to
 % create embeddings for tropes, and you say why. Later, in the
 % methodology, you say how you will be obtaining those tropes - JJ
-Tv Tropes (tvtropes.org) is a collaborative website created in 2004 to
+TV Tropes (tvtropes.org) is a collaborative website created in 2004 to
 share information about tips, narrative or cinematographic techniques
-used in creative works such as movies, tv series, advertising,
+used in creative works such as movies, TV series, advertising,
 videogames, sports, comics or books; latest iterations even include
 {\em real life} tropes.
 % This is a definition of tropes, which is context, not
@@ -85,7 +84,7 @@ Tvtropes.org defines tropes as:
 "a storytelling device or convention, a shortcut for describing
 situations the storyteller can reasonably assume the audience will
 recognize." Articles to describe tropes are written usually with a very
-expresive and non formal vocabulary. Each film, TV serie or other
+expressive and non formal vocabulary. Each film, TV series or other
 fiction element usually include a description and a list of associated
 tropes. Tropes pages usually contains a description followed by a list
 of films or a narrative resource that uses this trope.
@@ -93,19 +92,19 @@ of films or a narrative resource that uses this trope.
 % This is what you want to do to achieve the objectives. It belongs in
 % the introduction, but with a certain level of brevity. It's also
 % motivation for the paper - JJ
-To represent tropes we decided to use embeedings vectors for each
+To represent tropes we decided to use embedding vectors for each
 trope. This representation should allow us to perform concept
 arithmetic. This property will be very interesting since our goal is
 to determine, for example, which group of tropes must have a
 successful film. Applying arithmetic of concepts about tropes we
 could, for example, find classic western movies, which have their main
 narrative characteristics, but the western one is replaced by space
-adventure trope. in order to obtain the set of embeeding vects
+adventure trope. in order to obtain the set of embedding vectors
 associated with the tropes we will use word2vec
 \cite{mikolov2013}. Since the development of this technique in 2013
-word2vec is one of the techniques for the generation of embeeding
+word2vec is one of the techniques for the generation of embedding
 vectors from natural language (NLP) most used. However word2vec has
-not only been used to obtain embeeding vectors of texts in natural
+not only been used to obtain embedding vectors of texts in natural
 language. Other works like \cite{kazama2018} have shown that it is
 possible to use word2vec to obtain vectors from non-NLP information
 sources. Our approach is based on the use of the fundamental elements
@@ -115,7 +114,7 @@ that they would have in a text written by humans. This artificially
 created text should represent the relationships between entities in
 the same way that a human would relate them in a descriptive text
 about these entities. If the artificial corpus is correctly
-constructed, it should produce some embeeding vectors with the
+constructed, it should produce some embedding vectors with the
 capacity to offer us a correct arithmetic of concepts. 
 	
 	% How we want to solve that problem: we think that an adaptation of word2vec should be possible
@@ -181,7 +180,7 @@ the narrative.
         \cite{kazama2018}, which is actually the paper that inspired
         our work. The content they wanted to represent was the concept
         of ``regional cuisine'', so that a regional cuisine embedding
-        could be added or substracted from the embedding of a dish to
+        could be added or subtracted from the embedding of a dish to
         create a new, equivalent one in that new regional
         environment. The kind of data they were working with is
         similar to the one we use in this paper: dish ingredients. As
@@ -222,21 +221,21 @@ the narrative.
  \section{Methodology}
 \label{sec:met}
 	
-	1. Download TvTropes dataset \\
+	1. Download TVTropes dataset \\
 	2. Select films with number of tropes less than a certain number of tropes. The idea is to create a corpus with sentences constructed by permutations of sub-sets of tropes. \\
 	3. Build the corpus with permutations of tropes in each film \\
 
 
-	To represent tropes we decided to use embeedings vectors for
+	To represent tropes we decided to use embeddings vectors for
 rform
 
 f
 
         concepts about tropes we could, for example, find classic
 characteristics, but the western one is replaced by space
-vects
+vectors
 {mikolov2013}. Since the development of this technique in
-        embeeding vectors from natural language (NLP) most
+        embedding vectors from natural language (NLP) most
 btain
 orks
 e
@@ -254,21 +253,21 @@ will
        initial limit since we will generate all the variations
 
 train
-generate the artificial corpus we have followed this procedure. Firstly, we have downloaded all the tvtropes information related to movies and their associated tropes. Next we have selected those films that have a maximum of 15 tropes and eliminating those that have zero tropes. This filtering process generates a reduced set of trope with 6524 unique tropes. Full set of tropes have 25405. Figure  \ref{fig:tropesdistributionasociatedtofilms} shows the accumulative distribution of tropes and films, where 250 thresold will include more than 25000 tropes. In our case choosing films with 15 tropes or less the subset have only 6524 but including 99,2 percent of the 250 most popular tropes, so we can consider it a representative subset.\\
- Tvtropes dataset has 673258 pairs film-trope. 73917 duplicate values in pairs. After apply word2vect to artificially created corpus, a set of embeedings vectors will be created. The embeeding vector integrate information about the context of a certain word and it is easy to find the relationships with other terms in corpus.\\
+generate the artificial corpus we have followed this procedure. Firstly, we have downloaded all the tvtropes information related to movies and their associated tropes. Next we have selected those films that have a maximum of 15 tropes and eliminating those that have zero tropes. This filtering process generates a reduced set of trope with 6524 unique tropes. Full set of tropes have 25405. Figure  \ref{fig:tropesdistributionasociatedtofilms} shows the accumulative distribution of tropes and films, where 250 threshold will include more than 25000 tropes. In our case choosing films with 15 tropes or less the subset have only 6524 but including 99,2 percent of the 250 most popular tropes, so we can consider it a representative subset.\\
+ Tvtropes dataset has 673258 pairs film-trope. 73917 duplicate values in pairs. After apply word2vect to artificially created corpus, a set of embeddings vectors will be created. The embedding vector integrate information about the context of a certain word and it is easy to find the relationships with other terms in corpus.\\
 
 
- 	To obtain this artificial corpus, we place together entities that are connected. In the example of tvtropes, we will generate the artificial corpus generating phrases that put toguether film tropes. In order to generate the corpus we will select films that have a maximum of 15 tropes. We take this initial limit since we will generate all the variations without repetitions of 15 elements taken in groups of n elements. his method can give us enough size corpus to train the model using word2vec algorithm. \\
-	In order to generate the artificial corpus we have followed this procedure. Firstly, we have downloaded all the tvtropes information related to movies and their associated tropes. Next we have selected those films that have a maximum of 15 tropes and eliminating those that have zero tropes. This filtering process generates a reduced set of trope with 6524 unique tropes. Full set of tropes have 25405. Figure  \ref{fig:tropesdistributionasociatedtofilms} shows the accumulative distribution of tropes and films, where 250 thresold will include more than 25000 tropes. In our case choosing films with 15 tropes or less the subset have only 6524 but including 99,2 percent of the 250 most popular tropes, so we can consider it a representative subset.\\
+ 	To obtain this artificial corpus, we place together entities that are connected. In the example of tvtropes, we will generate the artificial corpus generating phrases that put together film tropes. In order to generate the corpus we will select films that have a maximum of 15 tropes. We take this initial limit since we will generate all the variations without repetitions of 15 elements taken in groups of n elements. his method can give us enough size corpus to train the model using word2vec algorithm. \\
+	In order to generate the artificial corpus we have followed this procedure. Firstly, we have downloaded all the tvtropes information related to movies and their associated tropes. Next we have selected those films that have a maximum of 15 tropes and eliminating those that have zero tropes. This filtering process generates a reduced set of trope with 6524 unique tropes. Full set of tropes have 25405. Figure  \ref{fig:tropesdistributionasociatedtofilms} shows the accumulative distribution of tropes and films, where 250 threshold will include more than 25000 tropes. In our case choosing films with 15 tropes or less the subset have only 6524 but including 99,2 percent of the 250 most popular tropes, so we can consider it a representative subset.\\
 	
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.9\linewidth]{../images/tropes_distribution_chart.png}
-		\caption{Accumulative distribution of tropes dassociated to films}
+		\caption{Accumulative distribution of tropes associated to films}
 		\label{fig:tropesdistributionasociatedtofilms}
 	\end{figure}
 	 
-	The challenge now is how to create a corpus that will be usefull to find relationships between tropes and films. Each film have a description and a list of tropes, and each trope have a description and a list of films that uses this trope. Initially our dataset obtained from tvtropes.org 13th december 2019 included 12360 films and 26742 different tropes (25405 after remove duplicates). The film with higher number of tropes has 1028 tropes and the film with minimum number of tropes has 0 tropes. Tvtropes dataset has 673258 pairs film-trope. 73917 duplicate values in pairs. After apply word2vect to artificially created corpus, a set of embeedings vectors will be created. The embeeding vector integrate information about the context of a certain word and it is easy to find the relationships with other terms in corpus.\\
+	The challenge now is how to create a corpus that will be useful to find relationships between tropes and films. Each film have a description and a list of tropes, and each trope have a description and a list of films that uses this trope. Initially our dataset obtained from tvtropes.org 13th December 2019 included 12360 films and 26742 different tropes (25405 after remove duplicates). The film with higher number of tropes has 1028 tropes and the film with minimum number of tropes has 0 tropes. Tvtropes dataset has 673258 pairs film-trope. 73917 duplicate values in pairs. After apply word2vect to artificially created corpus, a set of embeddings vectors will be created. The embedding vector integrate information about the context of a certain word and it is easy to find the relationships with other terms in corpus.\\
 	
     The size of the corpus of variations without repetition of 15 tropes taken from 9 in 9 is 288Mbytes. 9-size phrases have been created by making variations without repetition and ordering the result randomly \\
 	
